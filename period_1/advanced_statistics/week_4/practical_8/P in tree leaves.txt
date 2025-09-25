@@ -1,0 +1,16 @@
+variety	phosp
+Gala	0.35
+Gala	0.4
+Gala	0.47
+Gala	0.5
+Gala	0.58
+Elstar	0.6
+Jonagold	0.65
+Elstar	0.66
+Jonagold	0.7
+Elstar	0.73
+Elstar	0.75
+Jonagold	0.79
+Elstar	0.8
+Jonagold	0.84
+Jonagold	0.9
