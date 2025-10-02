@@ -83,4 +83,4 @@ emm1
 # Back-transform confidence intervals
 semm1 <- summary(emm1)
 exp(semm1[, c("emmean", "SE", "lower.CL", "upper.CL")])
-
+  
