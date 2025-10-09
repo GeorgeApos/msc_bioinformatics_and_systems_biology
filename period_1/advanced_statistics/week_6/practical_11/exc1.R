@@ -51,7 +51,7 @@ Anova_table(teaching.lm)
 # --- Plot fitted ANCOVA model ---
 ggplot(teaching_data, aes(x = age, y = score, color = Program)) +
   geom_point() +
-  geom_line(aes(y = teaching.lm$fitted.values), linewidth = 1)
+  geom_line(aes(y = teaching.lm$fitted.values), linewidth = 1) 
 
 # --- Check mean ages ---
 summaryBy(age ~ Program, data = teaching_data, FUN = mean)
