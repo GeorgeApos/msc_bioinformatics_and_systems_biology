@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b0cbd21-b6dc-41cb-b762-e13844a12b6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ORFs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NPAtlas_v2024_09.tsv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SMILES.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SMILES_sample.tsv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +49,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.DNA_kickstart.executor": "Debug",
+    "Python.SMILES.executor": "Debug",
     "Python.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
@@ -53,6 +57,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/geoap/Documents/WUR/msc_bioinformatics_and_systems_biology/period_2/advanced_bioinformatics/week_1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,7 +67,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\geoap\Documents\WUR\msc_bioinformatics_and_systems_biology\period_2\advanced_bioinformatics\week_1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.SMILES">
     <configuration name="DNA_kickstart" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="week_1" />
       <option name="ENV_FILES" value="" />
@@ -86,6 +96,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="SMILES" type="PythonConfigurationType" factoryName="Python">
+      <module name="week_1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Remote Python 3.13.7 (sftp://apost005@smith:22/usr/local/bin/python3)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SMILES.py" />
+      <option name="PARAMETERS" value="SMILES_sample.tsv 4" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.SMILES" />
+      <item itemvalue="Python.DNA_kickstart" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.DNA_kickstart" />
@@ -115,6 +153,7 @@
       <workItem from="1761653308724" duration="64000" />
       <workItem from="1761728744895" duration="2299000" />
       <workItem from="1761734278650" duration="5467000" />
+      <workItem from="1761815353794" duration="4641000" />
     </task>
     <servers />
   </component>
@@ -123,6 +162,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/week_1$test.coverage" NAME="test Coverage Results" MODIFIED="1761647298136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/week_1$DNA_kickstart.coverage" NAME="DNA_kickstart Coverage Results" MODIFIED="1761735381799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/week_1$SMILES.coverage" NAME="SMILES Coverage Results" MODIFIED="1761822290785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/week_1$DNA_kickstart.coverage" NAME="DNA_kickstart Coverage Results" MODIFIED="1761820414739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
