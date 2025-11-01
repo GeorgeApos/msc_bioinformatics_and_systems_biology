@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b0cbd21-b6dc-41cb-b762-e13844a12b6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FASTQ1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FASTQ1_sample.fastq" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="2b0cbd21-b6dc-41cb-b762-e13844a12b6c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -153,7 +149,7 @@
       <workItem from="1761734278650" duration="5467000" />
       <workItem from="1761815353794" duration="4641000" />
       <workItem from="1761913593965" duration="756000" />
-      <workItem from="1761994670539" duration="626000" />
+      <workItem from="1761994670539" duration="1290000" />
     </task>
     <servers />
   </component>
