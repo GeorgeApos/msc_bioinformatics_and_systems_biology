@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b0cbd21-b6dc-41cb-b762-e13844a12b6c" name="Changes" comment="" />
+    <list default="true" id="2b0cbd21-b6dc-41cb-b762-e13844a12b6c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/DEBUG_big.fasta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DEBUG_end.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DEBUG_start.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FASTQ2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QUAL.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QUAL_sample.fq" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QUAL_trimmed.fq" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,34 +48,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.DNA_kickstart.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.SMILES.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/geoap/Documents/WUR/msc_bioinformatics_and_systems_biology/period_2/advanced_bioinformatics/week_1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.DNA_kickstart.executor": "Debug",
+    "Python.FASTQ2.executor": "Debug",
+    "Python.SMILES.executor": "Debug",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/geoap/Documents/WUR/msc_bioinformatics_and_systems_biology/period_2/advanced_bioinformatics/week_1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\geoap\Documents\WUR\msc_bioinformatics_and_systems_biology\period_2\advanced_bioinformatics\week_1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.SMILES">
+  <component name="RunManager" selected="Python.FASTQ2">
     <configuration name="DNA_kickstart" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="week_1" />
       <option name="ENV_FILES" value="" />
@@ -83,6 +93,30 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DNA_kickstart.py" />
       <option name="PARAMETERS" value="Malakas" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FASTQ2" type="PythonConfigurationType" factoryName="Python">
+      <module name="week_1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Remote Python 3.13.7 (sftp://apost005@smith:22/usr/local/bin/python3)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FASTQ2.py" />
+      <option name="PARAMETERS" value="SRR30869527_1_001_trimmed.zip" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -115,6 +149,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.FASTQ2" />
       <item itemvalue="Python.SMILES" />
       <item itemvalue="Python.DNA_kickstart" />
     </list>
@@ -149,7 +184,8 @@
       <workItem from="1761734278650" duration="5467000" />
       <workItem from="1761815353794" duration="4641000" />
       <workItem from="1761913593965" duration="756000" />
-      <workItem from="1761994670539" duration="1290000" />
+      <workItem from="1761994670539" duration="2000000" />
+      <workItem from="1762249979170" duration="4469000" />
     </task>
     <servers />
   </component>
@@ -157,6 +193,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/week_1$FASTQ2.coverage" NAME="FASTQ2 Coverage Results" MODIFIED="1762250967698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/week_1$test.coverage" NAME="test Coverage Results" MODIFIED="1761647298136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/week_1$SMILES.coverage" NAME="SMILES Coverage Results" MODIFIED="1761822290785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/week_1$DNA_kickstart.coverage" NAME="DNA_kickstart Coverage Results" MODIFIED="1761820414739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
