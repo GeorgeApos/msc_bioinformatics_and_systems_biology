@@ -6,41 +6,41 @@
   <component name="ChangeListManager">
     <list default="true" id="2b0cbd21-b6dc-41cb-b762-e13844a12b6c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../name.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/week_1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEBUG_big.fasta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEBUG_end.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEBUG_start.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNA_kickstart.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FASTQ1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FASTQ1_sample.fastq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FASTQ2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GBK.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NPAtlas_v2024_09.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORFs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/QUAL.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/QUAL_sample.fq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/QUAL_trimmed.fq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SMILES.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SMILES_sample.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRR30869527_1_001_trimmed.fastq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRR30869527_1_001_trimmed.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TRAN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bio_exam_toolkit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chr3.fa" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/practice_exam_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/velvet_15.fa" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/copilot.data.migration.agent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/copilot.data.migration.ask.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/copilot.data.migration.edit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/week_1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../week_1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/DEBUG_big.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/DEBUG_end.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/DEBUG_start.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/DNA_kickstart.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/FASTQ1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/FASTQ1_sample.fastq" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/FASTQ2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/GBK.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/NPAtlas_v2024_09.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/ORFs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/QUAL.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/QUAL_sample.fq" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/QUAL_trimmed.fq" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/SMILES.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/SMILES_sample.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/SRR30869527_1_001_trimmed.fastq" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/SRR30869527_1_001_trimmed.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/TRAN.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/bio_exam_toolkit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/chr3.fa" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/practice_exam_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_1/velvet_15.fa" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,32 +76,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.DNA_kickstart.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.EXAM.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.FASTQ2.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.SMILES.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.practice_exam_1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.practice_exam_10_11_2025.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/geoap/Documents/WUR/msc_bioinformatics_and_systems_biology/period_2/advanced_bioinformatics/week_1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.DNA_kickstart.executor": "Debug",
+    "Python.EXAM.executor": "Debug",
+    "Python.FASTQ2.executor": "Debug",
+    "Python.SMILES.executor": "Debug",
+    "Python.practice_exam_1.executor": "Run",
+    "Python.practice_exam_10_11_2025.executor": "Debug",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/geoap/Documents/WUR/msc_bioinformatics_and_systems_biology/period_2/advanced_bioinformatics/scripts",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\geoap\Documents\WUR\msc_bioinformatics_and_systems_biology\period_2\advanced_bioinformatics\week_1" />
@@ -252,12 +252,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.DNA_kickstart" />
       <item itemvalue="Python.EXAM" />
       <item itemvalue="Python.FASTQ2" />
       <item itemvalue="Python.SMILES" />
       <item itemvalue="Python.practice_exam_10_11_2025" />
       <item itemvalue="Python.practice_exam_1" />
+      <item itemvalue="Python.DNA_kickstart" />
     </list>
     <recent_temporary>
       <list>
@@ -306,7 +306,7 @@
       <workItem from="1762933350848" duration="263000" />
       <workItem from="1762933624888" duration="974000" />
       <workItem from="1762934611780" duration="8596000" />
-      <workItem from="1763041051715" duration="57000" />
+      <workItem from="1763041111504" duration="64000" />
     </task>
     <servers />
   </component>
