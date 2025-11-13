@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
+
 """
-Yeast IMW004 Variant Analysis Pipeline
+Author: George Apostolidis
+Description: Pipeline for mapping IMW004 reads, calling variants and locating ADY2 SNP.
+Usage: python3 pipeline.py
 """
 
+from sys import argv
 import subprocess
-import sys
-import os
+import os.path
 
+# File paths (adjust if needed)
 REF = "files/yeast/chr3.fasta"
 GFF = "files/yeast/chr3.gff"
 
-# Paired-end reads
 READ1 = "files/yeast/imw004-chr3_1.fastq"
 READ2 = "files/yeast/imw004-chr3_2.fastq"
 
@@ -19,85 +22,98 @@ BAM = "files/yeast/imw004.bam"
 SORTED = "files/yeast/imw004.sorted.bam"
 VCF = "files/yeast/variants.vcf"
 
-
-def run(cmd):
-    print(f"\n[RUN] {cmd}")
-    ret = subprocess.run(cmd, shell=True)
-    if ret.returncode != 0:
-        sys.exit(f"Error running: {cmd}")
+# Path to VarScan (depends on your local installation)
+VARSCAN = "/mnt/local_scratch/BIF30806/prog/varscan/VarScan.v2.3.9.jar"
 
 
-def mapping_and_variants():
-
-    run(f"bwa index {REF}")
-
-    # *** FIXED: use paired-end reads ***
-    run(f"bwa mem {REF} {READ1} {READ2} > {SAM}")
-
-    run(f"samtools view -S -b {SAM} > {BAM}")
-    run(f"samtools sort {BAM} -o {SORTED}")
-    run(f"samtools index {SORTED}")
-
-    run(f"bcftools mpileup -Ou -f {REF} {SORTED} | bcftools call -mv -Ov -o {VCF}")
-
-    print(f"\nVCF written to {VCF}\n")
-
-
-def find_ady2_in_gff():
-    with open(GFF) as fh:
+def find_ady2_in_gff(gff_file):
+    """Return the genomic region of ADY2 (start, end, strand)."""
+    with open(gff_file) as fh:
         for line in fh:
             if line.startswith("#"):
                 continue
             cols = line.strip().split("\t")
             if len(cols) < 9:
                 continue
-
-            attributes = cols[8]
-            if "ADY2" in attributes:
+            if "ADY2" in cols[8]:
                 start = int(cols[3])
                 end = int(cols[4])
                 strand = cols[6]
-                print(f"ADY2 gene found at: {start}-{end} (strand {strand})")
                 return start, end, strand
+    return None
 
-    sys.exit("ADY2 gene not found in GFF!")
 
-
-def find_snps(vcf_file, gene_start, gene_end):
-    print("\nChecking SNPs in ADY2...\n")
-    snps = []
-
+def find_snps(vcf_file, start, end):
+    """Return all SNPs inside the ADY2 gene region."""
+    hits = []
     with open(vcf_file) as fh:
         for line in fh:
             if line.startswith("#"):
                 continue
-            chrom, pos, _, ref, alt, _, _, _ = line.strip().split("\t", 7)
-            pos = int(pos)
-
-            if gene_start <= pos <= gene_end:
-                snps.append((pos, ref, alt))
-                print(f"SNP at {pos}: {ref} → {alt}")
-
-    if not snps:
-        print("No SNPs detected in ADY2.")
-    else:
-        print("\nTotal ADY2 SNPs found:", len(snps))
-
-    return snps
+            cols = line.split("\t")
+            pos = int(cols[1])
+            ref = cols[3]
+            alt = cols[4]
+            if start <= pos <= end:
+                hits.append((pos, ref, alt))
+    return hits
 
 
 def main():
-    print("\n=== YEAST PIPELINE START ===")
 
-    mapping_and_variants()
+    commands = []
 
-    gene_start, gene_end, strand = find_ady2_in_gff()
-    find_snps(VCF, gene_start, gene_end)
+    # ---- 1. Index reference genome ----
+    commands.append(f"bwa index {REF}")
 
-    if strand == "-":
-        print("\nNOTE: ADY2 is on the reverse strand.\n")
+    # ---- 2. Map IMW004 reads ----
+    commands.append(f"bwa mem {REF} {READ1} {READ2} > {SAM}")
 
-    print("\n=== PIPELINE FINISHED ===\n")
+    # ---- 3. Convert SAM → BAM ----
+    commands.append(f"samtools view -S -b {SAM} > {BAM}")
+
+    # ---- 4. Sort BAM ----
+    commands.append(f"samtools sort {BAM} -o {SORTED}")
+
+    # ---- 5. Index BAM ----
+    commands.append(f"samtools index {SORTED}")
+
+    # ---- 6. Call variants using bcftools ----
+    commands.append(
+        f"bcftools mpileup -Ou -f {REF} {SORTED} | "
+        f"bcftools call -mv -Ov -o {VCF}"
+    )
+
+    # ---- Show planned commands ----
+    print("Getting ready to execute the following commands:\n")
+    for c in commands:
+        print(c)
+
+    # ---- Execute commands ----
+    for cmd in commands:
+        print("\nExecuting:", cmd)
+        subprocess.run(cmd, shell=True, check=True)
+        print("Success")
+
+    # ---- After running the pipeline: parse GFF and VCF ----
+    print("\n=== ANALYSIS OF ADY2 ===")
+
+    region = find_ady2_in_gff(GFF)
+    if region is None:
+        print("ADY2 not found in GFF!")
+        return
+    start, end, strand = region
+    print(f"ADY2 gene region: {start}-{end} (strand {strand})")
+
+    snps = find_snps(VCF, start, end)
+    if not snps:
+        print("No SNPs found in ADY2.")
+    else:
+        print("SNPs detected in ADY2:")
+        for pos, ref, alt in snps:
+            print(f" - Position {pos}: {ref} -> {alt}")
+
+    print("\nPipeline finished.\n")
 
 
 if __name__ == "__main__":

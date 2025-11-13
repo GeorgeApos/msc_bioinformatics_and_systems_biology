@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b0cbd21-b6dc-41cb-b762-e13844a12b6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/files/PTErelated.fa" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apostolidis_Practice_Exam_12_11_2025.py" beforeDir="false" afterPath="$PROJECT_DIR$/Apostolidis_Exam_12_11_2025.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEBUG_big.fasta" beforeDir="false" afterPath="$PROJECT_DIR$/files/DEBUG_big.fasta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FASTQ1_sample.fastq" beforeDir="false" afterPath="$PROJECT_DIR$/files/FASTQ1_sample.fastq" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NPAtlas_v2024_09.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/files/NPAtlas_v2024_09.tsv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PTEref.fa" beforeDir="false" afterPath="$PROJECT_DIR$/files/PTEref.fa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PTErelated.fa" beforeDir="false" afterPath="$PROJECT_DIR$/data_analysis_yeast_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QUAL_sample.fq" beforeDir="false" afterPath="$PROJECT_DIR$/files/QUAL_sample.fq" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QUAL_trimmed.fq" beforeDir="false" afterPath="$PROJECT_DIR$/files/QUAL_trimmed.fq" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SMILES_sample.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/files/SMILES_sample.tsv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRR30869527_1_001_trimmed.fastq" beforeDir="false" afterPath="$PROJECT_DIR$/files/SRR30869527_1_001_trimmed.fastq" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRR30869527_1_001_trimmed.zip" beforeDir="false" afterPath="$PROJECT_DIR$/files/SRR30869527_1_001_trimmed.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chr3.fa" beforeDir="false" afterPath="$PROJECT_DIR$/files/chr3.fa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ins_mamalia.fasta" beforeDir="false" afterPath="$PROJECT_DIR$/files/ins_mamalia.fasta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/velvet_15.fa" beforeDir="false" afterPath="$PROJECT_DIR$/files/velvet_15.fa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../week_1/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_analysis_yeast_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_analysis_yeast_1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +276,7 @@
       <workItem from="1762933624888" duration="974000" />
       <workItem from="1762934611780" duration="8596000" />
       <workItem from="1763041111504" duration="191000" />
-      <workItem from="1763041334889" duration="2540000" />
+      <workItem from="1763041334889" duration="5749000" />
     </task>
     <servers />
   </component>
