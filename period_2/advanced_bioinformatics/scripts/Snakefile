@@ -1,0 +1,62 @@
+# ============================================================
+# BIF30806 – A2 Snakemake Pipeline
+# Mapping → BAM → Sorted BAM → Variant Calling (in later steps)
+# ============================================================
+
+# ------------------------------------------------------------
+# Configuration: paths to data
+# ------------------------------------------------------------
+YEAST = "yeast"   # this is your symbolic link
+
+REF = f"{YEAST}/chr3.fasta"
+R1  = f"{YEAST}/cenpk-chr3_1.fastq"
+R2  = f"{YEAST}/cenpk-chr3_2.fastq"
+
+# ------------------------------------------------------------
+# Final target
+# ------------------------------------------------------------
+rule all:
+    input:
+        "aligned.sorted.bam"      # sorted BAM is the required output
+
+
+# ------------------------------------------------------------
+# Index the reference genome
+# ------------------------------------------------------------
+rule index_reference:
+    input:
+        REF
+    output:
+        REF + ".bwt"
+    shell:
+        "bwa index {input}"
+
+
+# ------------------------------------------------------------
+# Align reads → produce unsorted BAM
+# ------------------------------------------------------------
+rule align_reads:
+    input:
+        ref = REF,
+        idx = REF + ".bwt",
+        r1  = R1,
+        r2  = R2
+    output:
+        "aligned.bam"
+    shell:
+        """
+        bwa mem {input.ref} {input.r1} {input.r2} \
+        | samtools view -Sb - > {output}
+        """
+
+
+# ------------------------------------------------------------
+# Sort the BAM file (your current assignment step)
+# ------------------------------------------------------------
+rule sort_bam:
+    input:
+        "aligned.bam"
+    output:
+        "aligned.sorted.bam"
+    shell:
+        "samtools sort {input} -o {output}"
