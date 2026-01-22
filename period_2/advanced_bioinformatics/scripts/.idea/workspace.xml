@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b0cbd21-b6dc-41cb-b762-e13844a12b6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Snakefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/X.fastq" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Snakefile" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,6 +280,11 @@
       <workItem from="1763041111504" duration="191000" />
       <workItem from="1763041334889" duration="5749000" />
       <workItem from="1763114644753" duration="1249000" />
+      <workItem from="1763376266592" duration="2583000" />
+      <workItem from="1763381128708" duration="29000" />
+      <workItem from="1763654467008" duration="731000" />
+      <workItem from="1765397715059" duration="2132000" />
+      <workItem from="1765446113279" duration="595000" />
     </task>
     <servers />
   </component>

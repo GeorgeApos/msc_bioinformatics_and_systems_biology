@@ -1,0 +1,160 @@
+#############################################
+# RNA-seq Pipeline – Day II
+# Minimal Snakefile for submission (no Python scripts)
+#############################################
+
+# INPUT FILES
+READ1 = "reads_1.fq"
+READ2 = "reads_2.fq"
+GENOME = "genome.fa"
+ANNOT = "genes.gtf"
+
+# MAIN TARGETS
+rule all:
+    input:
+        "stringtie/transcripts.gtf",
+        "trinity_out_dir/Trinity.fasta",
+        "trinity_vs_TAIR10.blast.tab",
+        "kallisto/abundance.tsv"
+
+
+#############################################
+# 1. HISAT2 INDEX
+#############################################
+
+rule hisat2_index:
+    input:
+        GENOME
+    output:
+        expand("genome.{ext}", ext=["1.ht2","2.ht2","3.ht2","4.ht2","5.ht2","6.ht2","7.ht2","8.ht2"])
+    shell:
+        "hisat2-build {input} genome"
+
+
+#############################################
+# 2. MAP READS WITH HISAT2
+#############################################
+
+rule hisat2_align:
+    input:
+        r1 = READ1,
+        r2 = READ2,
+        idx = "genome.1.ht2"
+    output:
+        temp("aligned.bam")
+    shell:
+        """
+        hisat2 -x genome -1 {input.r1} -2 {input.r2} |
+        samtools view -bS - > {output}
+        """
+
+rule sort_bam:
+    input:
+        "aligned.bam"
+    output:
+        "aligned.sorted.bam"
+    shell:
+        "samtools sort -o {output} {input}"
+
+rule index_bam:
+    input:
+        "aligned.sorted.bam"
+    output:
+        "aligned.sorted.bam.bai"
+    shell:
+        "samtools index {input}"
+
+
+#############################################
+# 3. STRINGTIE
+#############################################
+
+rule stringtie:
+    input:
+        bam = "aligned.sorted.bam",
+        bai = "aligned.sorted.bam.bai",
+        annot = ANNOT
+    output:
+        "stringtie/transcripts.gtf"
+    shell:
+        """
+        mkdir -p stringtie
+        stringtie {input.bam} -G {input.annot} -o {output}
+        """
+
+
+#############################################
+# 4. TRINITY DE NOVO ASSEMBLY
+#############################################
+
+rule trinity:
+    input:
+        READ1,
+        READ2
+    output:
+        "trinity_out_dir/Trinity.fasta"
+    shell:
+        """
+        Trinity \
+            --seqType fq \
+            --left {input[0]} \
+            --right {input[1]} \
+            --CPU 8 --max_memory 16G
+        """
+
+
+#############################################
+# 5. MAKE BLAST DB (TAIR10)
+#############################################
+
+rule makeblastdb:
+    input:
+        GENOME
+    output:
+        "TAIR10.nhr"
+    shell:
+        "makeblastdb -in {input} -dbtype nucl -out TAIR10"
+
+
+#############################################
+# 6. BLAST TRINITY AGAINST TAIR10
+#############################################
+
+rule blast_trinity:
+    input:
+        fasta = "trinity_out_dir/Trinity.fasta",
+        db = "TAIR10.nhr"
+    output:
+        "trinity_vs_TAIR10.blast.tab"
+    shell:
+        """
+        blastn \
+            -query {input.fasta} \
+            -db TAIR10 \
+            -evalue 1e-10 \
+            -outfmt 7 \
+            -out {output}
+        """
+
+
+#############################################
+# 7. KALLISTO QUANTIFICATION
+#############################################
+
+rule kallisto:
+    input:
+        idx = "TAIR.idx",
+        r1 = READ1,
+        r2 = READ2
+    output:
+        "kallisto/abundance.tsv"
+    shell:
+        """
+        mkdir -p kallisto
+        kallisto quant \
+            -i {input.idx} \
+            -o kallisto \
+            --fragment-length 200 \
+            --sd 20 \
+            {input.r1} {input.r2}
+        """
