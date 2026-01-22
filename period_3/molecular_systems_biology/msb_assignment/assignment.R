@@ -249,17 +249,41 @@ cat("Chosen top proportion:", chosen_prop, "\n")
 cat("Implied |r| threshold:", thr_best, "\n")
 cat("Edges:", nrow(edges), " Nodes:", length(unique(c(edges$source, edges$target))), "\n")
 
-write.table(edges[,c("source","target","weight")],
-            "PA14_focus1_edges.tsv",
-            sep="\t", row.names=FALSE, quote=FALSE)
-
 library(igraph)
 
-## Try less strict sparsity levels
-top_props <- c(0.02, 0.05, 0.10)   # 2%, 5%, 10%
+## -----------------------------
+## A) GLOBAL BACKBONE NETWORK
+## -----------------------------
 
-summ_top2 <- lapply(top_props, function(p){
-  res <- get_edges_by_top_prop(cor_gene, p)
+## 1) Optional: filter genes with zero variance across ALL 47 samples
+gene_var_all <- apply(log_data_imp, 1, var)
+expr_all <- log_data_imp[gene_var_all > 0, , drop = FALSE]
+cat("Genes kept for global network (var>0):", nrow(expr_all), "\n")
+cat("Samples used:", ncol(expr_all), "\n")
+
+## 2) Gene–gene correlation across ALL samples (robust backbone)
+cor_global <- cor(t(expr_all), method = "pearson", use = "pairwise.complete.obs")
+diag(cor_global) <- 0
+
+## 3) Helper: edges by top proportion of |correlation|
+get_edges_by_top_prop <- function(cor_mat, prop){
+  w <- abs(cor_mat[upper.tri(cor_mat)])
+  thr <- as.numeric(quantile(w, probs = 1 - prop, na.rm = TRUE))
+  idx <- which(abs(cor_mat) >= thr & upper.tri(cor_mat), arr.ind = TRUE)
+  edges <- data.frame(
+    source = rownames(cor_mat)[idx[,1]],
+    target = colnames(cor_mat)[idx[,2]],
+    corr   = cor_mat[idx],
+    abs_corr = abs(cor_mat[idx])
+  )
+  list(edges = edges, thr = thr)
+}
+
+## 4) Pick threshold candidates + summary (so you can justify it)
+top_props <- c(0.02, 0.05, 0.10)
+
+summ_global <- lapply(top_props, function(p){
+  res <- get_edges_by_top_prop(cor_global, p)
   g <- graph_from_data_frame(res$edges, directed = FALSE)
   cc <- components(g)
   data.frame(
@@ -272,134 +296,107 @@ summ_top2 <- lapply(top_props, function(p){
     density = edge_density(g, loops = FALSE)
   )
 })
+summ_global_df <- do.call(rbind, summ_global)
+summ_global_df
 
-summ_top2_df <- do.call(rbind, summ_top2)
-summ_top2_df
-
+## 5) Choose one (recommended: start with 0.05; change if hairball/fragmented in Cytoscape)
 chosen_prop <- 0.05
+res_global <- get_edges_by_top_prop(cor_global, chosen_prop)
+edges_global <- res_global$edges
+thr_global <- res_global$thr
 
-res <- get_edges_by_top_prop(cor_gene, chosen_prop)
-edges <- res$edges
-thr_best <- res$thr
+cat("GLOBAL network chosen top_prop:", chosen_prop, "\n")
+cat("GLOBAL implied |r| threshold:", thr_global, "\n")
+cat("GLOBAL edges:", nrow(edges_global),
+    "GLOBAL nodes:", length(unique(c(edges_global$source, edges_global$target))), "\n")
 
-cat("Chosen top proportion:", chosen_prop, "\n")
-cat("Implied |r| threshold:", thr_best, "\n")
-cat("Nodes:", length(unique(c(edges$source, edges$target))), 
-    "Edges:", nrow(edges), "\n")
+## 6) Build graph and compute topology (UNWEIGHTED centralities; abs_corr for community)
+g_global <- graph_from_data_frame(edges_global, directed = FALSE)
 
-write.table(edges[,c("source","target","weight")],
-            "PA14_focus1_edges_5pct.tsv",
-            sep="\t", row.names=FALSE, quote=FALSE)
+deg <- degree(g_global)
+btw <- betweenness(g_global, normalized = TRUE)
+clo <- closeness(g_global, normalized = TRUE)
+clu <- transitivity(g_global, type = "local", isolates = "zero")
 
-## Count replicates per condition (strip trailing _number)
+E(g_global)$w_abs <- E(g_global)$abs_corr
+comm <- cluster_louvain(g_global, weights = E(g_global)$w_abs)
+cc <- components(g_global)
+
+nodes_global <- data.frame(
+  gene = V(g_global)$name,
+  degree = as.numeric(deg[V(g_global)$name]),
+  betweenness = as.numeric(btw[V(g_global)$name]),
+  closeness = as.numeric(clo[V(g_global)$name]),
+  clustering_coeff = as.numeric(clu[V(g_global)$name]),
+  module = as.integer(membership(comm)[V(g_global)$name]),
+  component = as.integer(cc$membership[match(V(g_global)$name, V(g_global)$name)])
+)
+
+## 7) Export backbone network + node topology for Cytoscape
+out_dir <- "cytoscape_global_backbone"
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+
+write.table(edges_global[, c("source","target","corr")],
+            file.path(out_dir, "PA14_GLOBAL_edges.tsv"),
+            sep = "\t", row.names = FALSE, quote = FALSE)
+
+write.table(nodes_global,
+            file.path(out_dir, "PA14_GLOBAL_nodes_topology.tsv"),
+            sep = "\t", row.names = FALSE, quote = FALSE)
+
+cat("Saved:\n",
+    file.path(out_dir, "PA14_GLOBAL_edges.tsv"), "\n",
+    file.path(out_dir, "PA14_GLOBAL_nodes_topology.tsv"), "\n", sep="")
+
+## -----------------------------
+## B) CONDITION “ACTIVITY” TABLES FOR SUBNETWORK EXTRACTION
+## -----------------------------
+
+## 1) Define condition name from sample columns (strip trailing _number)
 cond_name <- sub("_[0-9]+$", "", colnames(log_data_imp))
-rep_counts <- sort(table(cond_name), decreasing = TRUE)
-rep_counts
 
+## Choose your 4 conditions (edit these)
 conditions_4 <- c("iron.starvation", "stationary.phase", "biofilm.48h", "transitional.growth")
 
-library(igraph)
+## 2) Prepare gene-wise z-scores across ALL samples (activity relative to overall behavior)
+## This helps you select “active/high” genes per condition in a comparable way.
+z_all <- t(scale(t(log_data_imp)))  # genes x samples
+z_all[!is.finite(z_all)] <- 0       # handle any constant genes safely (should be rare after filtering)
 
-build_condition_network <- function(expr_mat, condition_prefix,
-                                    top_prop = 0.05,
-                                    cor_method = "pearson",
-                                    out_dir = ".",
-                                    min_reps_warn = 3) {
+## 3) Helper to export a condition node table with expression/activity
+export_condition_activity <- function(cond, expr_mat, z_mat, out_dir){
+  cols <- which(cond_name == cond)
+  if (length(cols) == 0) stop(paste("No samples found for condition:", cond))
   
-  ## Select replicate columns for that condition
-  pattern <- paste0("^", gsub("\\.", "\\\\.", condition_prefix), "_[0-9]+$")
-  cols <- grepl(pattern, colnames(expr_mat))
-  sub <- expr_mat[, cols, drop = FALSE]
+  expr_sub <- expr_mat[, cols, drop = FALSE]
+  z_sub    <- z_mat[, cols, drop = FALSE]
   
-  cat("\n=== ", condition_prefix, " ===\n", sep="")
-  cat("Replicates:", ncol(sub), "\n")
+  mean_expr <- rowMeans(expr_sub, na.rm = TRUE)
+  mean_z    <- rowMeans(z_sub, na.rm = TRUE)
   
-  if (ncol(sub) < min_reps_warn) {
-    cat("NOTE: < ", min_reps_warn, " replicates. Correlations may be unreliable; report this.\n", sep="")
-  }
-  if (ncol(sub) < 2) stop("Not enough replicates to compute correlation.")
+  ## Optional: define “active” genes via mean_z threshold (edit as needed)
+  ## You can also select top N by mean_z in Cytoscape.
+  active_flag <- mean_z >= 1  # “above-average” expression for that gene
   
-  ## Filter zero-variance genes
-  gv <- apply(sub, 1, var)
-  sub <- sub[gv > 0, , drop = FALSE]
-  cat("Genes kept (var>0):", nrow(sub), "\n")
-  if (nrow(sub) < 10) stop("Too few genes after filtering; check condition name or data.")
-  
-  ## Gene–gene correlation
-  cor_gene <- cor(t(sub), method = cor_method, use = "pairwise.complete.obs")
-  diag(cor_gene) <- 0
-  
-  ## Threshold by top_prop strongest |r|
-  w <- abs(cor_gene[upper.tri(cor_gene)])
-  thr <- as.numeric(quantile(w, probs = 1 - top_prop, na.rm = TRUE))
-  
-  idx <- which(abs(cor_gene) >= thr & upper.tri(cor_gene), arr.ind = TRUE)
-  
-  ## IMPORTANT: avoid naming column "weight" so igraph doesn't treat signed values as weights
-  edges <- data.frame(
-    source = rownames(cor_gene)[idx[,1]],
-    target = colnames(cor_gene)[idx[,2]],
-    corr   = cor_gene[idx],
-    abs_corr = abs(cor_gene[idx])
+  tbl <- data.frame(
+    gene = rownames(expr_mat),
+    condition = cond,
+    mean_expr = as.numeric(mean_expr),
+    mean_z = as.numeric(mean_z),
+    active_z_ge_1 = active_flag
   )
   
-  ## Build graph
-  g <- graph_from_data_frame(edges, directed = FALSE)
+  ## Save for Cytoscape (import as node table; key = gene)
+  f <- file.path(out_dir, paste0("PA14_", cond, "_node_activity.tsv"))
+  write.table(tbl, f, sep="\t", row.names=FALSE, quote=FALSE)
+  cat("Saved activity table:", f, "\n")
   
-  ## Connected components
-  cc <- components(g)
-  
-  ## Centralities UNWEIGHTED (safe for signed correlations)
-  deg <- degree(g)
-  btw <- betweenness(g, normalized = TRUE)
-  clo <- closeness(g, normalized = TRUE)
-  clu <- transitivity(g, type = "local", isolates = "zero")
-  
-  ## Modules: use positive weights (abs correlation)
-  E(g)$w_abs <- E(g)$abs_corr
-  comm <- cluster_louvain(g, weights = E(g)$w_abs)
-  
-  node_table <- data.frame(
-    gene = names(deg),
-    degree = as.numeric(deg),
-    betweenness = as.numeric(btw[names(deg)]),
-    closeness = as.numeric(clo[names(deg)]),
-    clustering_coeff = as.numeric(clu[names(deg)]),
-    module = as.integer(membership(comm)[names(deg)]),
-    component = as.integer(cc$membership[match(names(deg), V(g)$name)])
-  )
-  
-  ## Export
-  dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
-  
-  edge_file <- file.path(out_dir, paste0("PA14_", condition_prefix, "_edges_top", top_prop*100, "pct.tsv"))
-  node_file <- file.path(out_dir, paste0("PA14_", condition_prefix, "_nodes_top", top_prop*100, "pct.tsv"))
-  
-  write.table(edges[, c("source","target","corr")],
-              edge_file, sep = "\t", row.names = FALSE, quote = FALSE)
-  
-  write.table(node_table,
-              node_file, sep = "\t", row.names = FALSE, quote = FALSE)
-  
-  ## Print summary for your report
-  cat("Implied |r| threshold:", round(thr, 4), "\n")
-  cat("Nodes:", vcount(g), "Edges:", ecount(g), "\n")
-  cat("Components:", cc$no, "Largest component:", max(cc$csize), "\n")
-  cat("Saved:\n  ", edge_file, "\n  ", node_file, "\n", sep="")
-  
-  invisible(list(graph=g, edges=edges, nodes=node_table, thr=thr))
+  invisible(tbl)
 }
 
-out_dir <- "cytoscape_condition_networks"
-top_prop <- 0.05
-cor_method <- "pearson"
+out_dir2 <- "cytoscape_condition_activity_tables"
+dir.create(out_dir2, showWarnings = FALSE, recursive = TRUE)
 
-networks <- lapply(conditions_4, function(cond) {
-  build_condition_network(
-    expr_mat = log_data_imp,
-    condition_prefix = cond,
-    top_prop = top_prop,
-    cor_method = cor_method,
-    out_dir = out_dir
-  )
+activity_tables <- lapply(conditions_4, function(cond){
+  export_condition_activity(cond, log_data_imp, z_all, out_dir2)
 })
